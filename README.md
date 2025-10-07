@@ -209,6 +209,61 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📞 Support
+## � Docker Deployment
+
+### Quick Docker Setup
+```bash
+# Build and start all services
+docker-compose up --build
+
+# Run in background
+docker-compose up -d --build
+
+# Stop services
+docker-compose down
+```
+
+### Individual Docker Builds
+```bash
+# Backend only
+cd backend
+docker build -t bike-analytics-backend .
+docker run -p 8000:8000 bike-analytics-backend
+
+# Frontend only
+cd frontend
+docker build -t bike-analytics-frontend .
+docker run -p 3000:80 bike-analytics-frontend
+```
+
+### Production Deployment Notes
+- Ensure CSV data file is included in the repository (removed from .gitignore)
+- Configure environment variables for production API endpoints
+- Backend includes health check endpoint at `/health`
+- Frontend builds as static files served by Nginx
+- Use Docker Compose for orchestrating both services
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**Backend Issues:**
+- `numpy.datetime64 object has no attribute 'day'`: Fixed by converting to Python datetime
+- `CSV file not found`: Ensure `bike sport company.csv` is in `backend/data/` directory
+- Dependencies conflicts: Use Python 3.11+ with updated requirements.txt
+
+**Frontend Issues:**
+- `npm ci` errors: Delete `package-lock.json` and run `npm install`
+- TypeScript version mismatch: Regenerate lock file with `npm install`
+- ESLint warnings: Remove unused imports
+
+**Deployment Issues:**
+- Docker build failures: Check Dockerfile and .dockerignore files
+- CORS errors: Verify backend CORS configuration
+- Port conflicts: Ensure ports 3000 and 8000 are available
+
+## �📞 Support
 
 For support and questions, please open an issue on the GitHub repository.
+
+Created by **Samuel FOTSO** - [Portfolio](https://samuel.diversis.site/) | [GitHub](https://github.com/samitochi04) | [LinkedIn](https://www.linkedin.com/in/samuel-fotso-6b9879253/)

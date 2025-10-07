@@ -145,6 +145,5 @@ ehthumbs.db
 Thumbs.db
 
 # Project specific
-*.csv
 uploads/
 temp/

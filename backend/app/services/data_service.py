@@ -53,11 +53,13 @@ class DataService:
         
         for i in range(1000):  # Create 1000 sample records
             date = np.random.choice(dates)
+            # Convert numpy.datetime64 to Python datetime
+            date_py = pd.to_datetime(date).to_pydatetime()
             sample_data.append({
                 'Date': date,
-                'Day': date.day,
-                'Month': date.strftime('%B'),
-                'Year': date.year,
+                'Day': date_py.day,
+                'Month': date_py.strftime('%B'),
+                'Year': date_py.year,
                 'Customer_Age': np.random.randint(16, 85),
                 'Age_Group': np.random.choice(age_groups),
                 'Customer_Gender': np.random.choice(genders),

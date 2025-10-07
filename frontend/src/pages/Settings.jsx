@@ -4,7 +4,6 @@ import {
   Globe, 
   Github, 
   Linkedin, 
-  Mail, 
   ExternalLink,
   Code,
   Database,
