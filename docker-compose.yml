@@ -3,8 +3,8 @@ version: '3.8'
 services:
   backend:
     build: ./backend
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     environment:
       - PYTHONPATH=/app
     volumes:
@@ -18,13 +18,13 @@ services:
 
   frontend:
     build: ./frontend
-    ports:
-      - "3000:80"
+    expose:
+      - "80"
     depends_on:
       - backend
     restart: unless-stopped
     environment:
-      - REACT_APP_API_URL=http://localhost:8000/api
+      - REACT_APP_API_URL
 
 networks:
   default:
