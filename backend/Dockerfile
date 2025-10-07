@@ -7,6 +7,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
@@ -21,5 +22,5 @@ COPY . .
 # Expose port
 EXPOSE 8000
 
-# Run the application
-CMD ["python", "main.py"]
+# Run the application with uvicorn directly for better production deployment
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
